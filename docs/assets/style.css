@@ -65,3 +65,18 @@ dialog label { display: block; margin-bottom: 10px; font-size: .88rem; color: va
 dialog label input, dialog label select { margin-top: 3px; color: var(--text); }
 dialog label.chk { display: flex; gap: 8px; align-items: center; }
 .acc { display: flex; gap: 8px; align-items: center; margin-top: 14px; }
+
+.barra select { width: auto; flex: none; }
+.chips { align-items: center; }
+.chips .chips { margin: 0; }
+.card .cab { display: flex; gap: 8px; align-items: flex-start; }
+.card .cab img { width: 16px; height: 16px; margin-top: 4px; flex: none; }
+.card .mv { padding: 2px 8px; }
+.card[draggable="true"] { cursor: grab; }
+.card.arrastrando { opacity: .4; }
+.card.sobre { outline: 2px dashed var(--accent); }
+.lista.compacta { grid-template-columns: 1fr; gap: 6px; }
+.lista.compacta .card { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 4px 10px; padding: 8px 12px; }
+.lista.compacta .card .desc { display: none; }
+.lista.compacta .card .pie { margin: 0 0 0 auto; padding: 0; }
+.lista.compacta .card .cp { margin-left: 0; }
