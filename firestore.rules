@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Dueño: cuenta de Google verificada o la cuenta de clave (correo/contraseña, sin registro abierto).
+    function esDueno() {
+      return request.auth != null && (
+        (request.auth.token.email == "krojas.alfaro7@gmail.com" && request.auth.token.email_verified == true)
+        || request.auth.token.email == "krojas.alfaro7+links@gmail.com"
+      );
+    }
+    // Links públicos: cualquiera lee, solo el dueño escribe.
+    match /links_publicos/{id} {
+      allow read: if true;
+      allow write: if esDueno();
+    }
+    // Links privados y categorías: solo el dueño.
+    match /links_privados/{id} {
+      allow read, write: if esDueno();
+    }
+    match /config/{doc} {
+      allow read: if true;
+      allow write: if esDueno();
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
