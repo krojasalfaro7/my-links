@@ -86,6 +86,24 @@ function pintar() {
   $("vacio").hidden = visibles.length > 0;
 }
 
+async function copiar(texto, boton) {
+  try {
+    await navigator.clipboard.writeText(texto);
+  } catch {
+    // Sin permiso del portapapeles (p. ej. contexto no seguro): copia con un textarea temporal.
+    const t = document.createElement("textarea");
+    t.value = texto;
+    document.body.append(t);
+    t.select();
+    const ok = document.execCommand("copy");
+    t.remove();
+    if (!ok) return mensaje("No se pudo copiar el link.");
+  }
+  const previo = boton.textContent;
+  boton.textContent = "Copiado ✓";
+  setTimeout(() => { boton.textContent = previo; }, 1500);
+}
+
 function tarjeta(l) {
   const c = el("article", "card");
   const href = urlSegura(l.url);
@@ -97,6 +115,13 @@ function tarjeta(l) {
   const pie = el("div", "pie");
   if (l.categoria) pie.append(el("span", "tag cat", l.categoria));
   for (const t of l.etiquetas || []) pie.append(el("span", "tag", "#" + t));
+  if (href) {
+    const cp = el("button", "cp", "Copiar");
+    cp.type = "button";
+    cp.title = "Copiar el link";
+    cp.onclick = () => copiar(href, cp);
+    pie.append(cp);
+  }
   if (estado.sesion) {
     const b = el("button", "ed", "Editar");
     b.type = "button";

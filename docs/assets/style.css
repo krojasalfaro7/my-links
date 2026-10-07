@@ -53,7 +53,9 @@ input[type="checkbox"] { width: auto; }
 .card .pie { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: auto; padding-top: 6px; }
 .tag { font-size: .75rem; border: 1px solid var(--line); border-radius: 99px; padding: 1px 8px; color: var(--muted); }
 .tag.cat { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
-.card .ed { margin-left: auto; padding: 2px 10px; }
+.card .cp, .card .ed { padding: 2px 10px; }
+.card .cp { margin-left: auto; }
+.card .cp + .ed { margin-left: 0; }
 
 #admin { margin-top: 24px; display: flex; gap: 8px; }
 
