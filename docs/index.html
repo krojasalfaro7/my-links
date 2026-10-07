@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mis links</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%231f5fa8%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2717%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27sans-serif%27 font-weight=%27700%27%3EL%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#1f5fa8">
+<link rel="stylesheet" href="assets/style.css?v=20261007150406">
+</head>
+<body>
+<nav class="top">
+  <div class="in">
+    <strong>Mis links</strong>
+    <span class="sp"></span>
+    <button id="tema" type="button" title="Cambiar tema">◐</button>
+    <button id="sesion" type="button" disabled>Iniciar sesión</button>
+  </div>
+</nav>
+<main>
+  <div class="barra">
+    <input id="buscar" type="search" placeholder="Buscar por título, URL o etiqueta…" aria-label="Buscar">
+    <button id="nuevo" type="button" class="primario" hidden>+ Nuevo</button>
+  </div>
+  <div id="filtros" class="chips"></div>
+  <p id="msg" class="muted" role="status"></p>
+  <section id="lista" class="lista"></section>
+  <p id="vacio" class="muted" hidden>No hay links que mostrar.</p>
+  <div id="admin" class="muted" hidden>
+    <button id="exportar" type="button">Exportar JSON</button>
+    <label class="btn">Importar JSON <input id="importar" type="file" accept="application/json" hidden></label>
+  </div>
+</main>
+
+<dialog id="dlg">
+  <form id="form" method="dialog">
+    <h2 id="dlg-titulo">Nuevo link</h2>
+    <label>Título <input name="titulo" required maxlength="120"></label>
+    <label>URL <input name="url" type="url" required placeholder="https://"></label>
+    <label>Descripción <input name="descripcion" maxlength="300"></label>
+    <label>Categoría <input name="categoria" list="cats" maxlength="40"><datalist id="cats"></datalist></label>
+    <label>Etiquetas (separadas por coma) <input name="etiquetas"></label>
+    <label>Visibilidad
+      <select name="visibilidad"><option value="privado">Privado</option><option value="publico">Público</option></select>
+    </label>
+    <label class="chk"><input name="favorito" type="checkbox"> Favorito</label>
+    <div class="acc">
+      <button type="button" id="borrar" class="peligro" hidden>Borrar</button>
+      <span class="sp"></span>
+      <button type="button" id="cancelar">Cancelar</button>
+      <button type="submit" class="primario">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-login">
+  <form id="form-login" method="dialog">
+    <h2>Iniciar sesión</h2>
+    <button type="button" id="google" class="primario">Entrar con Google</button>
+    <p class="muted">o con clave</p>
+    <label>Clave <input id="clave" type="password" autocomplete="current-password"></label>
+    <p id="login-msg" class="bad" role="alert"></p>
+    <div class="acc">
+      <span class="sp"></span>
+      <button type="button" id="login-cancelar">Cancelar</button>
+      <button type="submit" class="primario">Entrar</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="assets/app.js?v=20261007150406"></script>
+</body>
+</html>
