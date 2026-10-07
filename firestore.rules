@@ -1,12 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Dueño: cuenta de Google verificada o la cuenta de clave (correo/contraseña, sin registro abierto).
+    // Dueño: sus dos cuentas de Firebase Auth, por UID (Google y clave de correo/contraseña).
     function esDueno() {
-      return request.auth != null && (
-        (request.auth.token.email == "krojas.alfaro7@gmail.com" && request.auth.token.email_verified == true)
-        || request.auth.token.email == "krojas.alfaro7+links@gmail.com"
-      );
+      return request.auth != null && request.auth.uid in [
+        "LbhMNg8aA6dgDqcQadTnRVHKn633",   // Google: krojas.alfaro7@gmail.com
+        "ge429UVXVzgcjPgkJkQq2RCQyHx1"    // Clave: krojas.alfaro7+links@gmail.com
+      ];
     }
     // Links públicos: cualquiera lee, solo el dueño escribe.
     match /links_publicos/{id} {
